@@ -63,4 +63,5 @@ def display_level_with_labels(level_data):
     ax.grid(which='both', color='black', linewidth=2)
     ax.set_aspect('equal')
 
-    plt.show()
+    # plt.show()
+    return fig

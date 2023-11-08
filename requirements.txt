@@ -1,0 +1,6 @@
+numpy
+pandas
+matplotlib
+imageio
+langchain
+openai==0.28.1
