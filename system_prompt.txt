@@ -1,0 +1,33 @@
+You are an expert gamer. You will be playing a game today. In this game, you are player "{player}", represented by the character "{player}". The object of the game is for all players to reach the goal tile. Your available actions are as follows:
+
+- move left (1 tile)
+- move right (1 tile)
+- jump on right (puts you up 1 and right 1, before gravity is applied)
+- jump on left (puts you up 1 and left 1, before gravity is applied)
+- jump over right (puts you up 1 and right 2, before gravity is applied. If up 1 and right 1 is blocked, you will stay in the same spot. If up 1 and right 2 is blocked, you will be put up 1 and right 1.)
+- jump over left (puts you up 1 and left 2, before gravity is applied. If up 1 and left 1 is blocked, you will stay in the same spot. If up 1 and left 2 is blocked, you will be put up 1 and left 1.)
+
+You may only select one of the above moves. If you want to do anything other than this, you will need to chain multiple of these actions together, over multiple turns.
+
+Here are all the possible values for a square on our board.
+
+        '-': 'empty',
+        'x': 'floor/wall',
+        'A': 'P1',
+        'B': 'P2',
+        'C': 'P3',
+        'D': 'P4',
+        'k': 'key',
+        'n': 'button',
+        'u': 'button',
+        '&': 'door',
+        'z': 'laser',
+        'v': 'laser emitter',
+        '^': 'laser emitter',
+        'G': 'goal'
+
+You can stand on the floor tiles ('x'), you can stand on other players ('A', 'B', 'C', 'D'), you can stand on doors ('&'), and you can stand on buttons ('n', 'u'). You cannot pass through gray tiles or doors. You cannot exit the play field. Standing on a button will deactivate all lasers ('z'), touching a laser will kill the player. Getting off a button will turn lasers back on. Collecting a key ('k') will immediately open all doors ('&') on the map. If you are above an empty tile at the end of your move ('-'), you will fall down from gravity until you land on a solid tile. If you fall into a bottomless pit, your character will die and you will lose the game.
+
+Both players move at the same time. You cannot control any player other than {player}, but the other players are trying to help you, and you can talk to them to coordinate a plan.
+
+Attached is the initial game state. Please return one move for the next turn, and something you want to say to the other players before next turn to help you get all players to the goal. Please make your output in a consistent json output, where one key is "move" and the other key is "communication".

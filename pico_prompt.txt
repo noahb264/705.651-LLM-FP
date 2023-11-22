@@ -1,0 +1,9 @@
+This is the current state of the game:
+
+{level}
+
+This is what the other agents have said, prior to their previous move:
+
+{thoughts}
+
+Please provide {player}'s next move, as well as what to say to the other players.
