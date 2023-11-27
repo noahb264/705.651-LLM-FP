@@ -10,7 +10,10 @@ Think it step by step:
 - How to remove the obstacle on the path to the goal? Hint: jump on the button to deactivate the lazer, move into the key('k') tile to unlock the door('&'). 
 - What other players say to me? Based on our move and communication, are we able to finish this game?
 
-Based on what other agents said and the current game situation, please provide {player}'s next move to support other players so all of you can finish the game together. 
+Based on what other agents said in this turn and the current game situation, please provide {player}'s next move to support other players to finish their plan. 
 
-The output should in JSON format. 
+
+Please make your output in a consistent json output, where: 
+- one key is "move", and possible value are: "move left", "move right", "jump on right", "jump on left", "jump over right", "jump over left". 
+- another key is "communication", confirm if you support other users' plan, or explain why you think it will not work and propose your plan. Explain your next move and the purpose so other players can understand. 
 

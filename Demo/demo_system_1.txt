@@ -19,13 +19,13 @@ Here are all the possible values for a square tile on our board.
 '^': 'laser emitter',
 'G': 'goal'
 
-You may only select one moves below in each turn. You need to plan a chain multiple of these actions together, over multiple turns.
-- move left (1 tile)
-- move right (1 tile)
-- jump on right (puts you up 1 and right 1, before gravity is applied)
-- jump on left (puts you up 1 and left 1, before gravity is applied)
-- jump over right (puts you up 1 and right 2, before gravity is applied. If up 1 and right 1 is blocked, you will stay in the same spot. If up 1 and right 2 is blocked, you will be put up 1 and right 1.)
-- jump over left (puts you up 1 and left 2, before gravity is applied. If up 1 and left 1 is blocked, you will stay in the same spot. If up 1 and left 2 is blocked, you will be put up 1 and left 1.)
+You may only select one move from below list in each turn. You need to plan a chain multiple of these actions together, over multiple turns.
+- move left: move player to the left for 1 tile.
+- move right: move player to the right for 1 tile.
+- jump on right: move player up 1 and right 1, before gravity is applied.
+- jump on left: move player up 1 and left 1, before gravity is applied.
+- jump over right: move player up 1 and right 2, before gravity is applied. If up 1 and right 1 is blocked, player will stay in the same tile. If up 1 and right 2 is blocked, player will be put up 1 and right 1.
+- jump over left: move player up 1 and left 2, before gravity is applied. If up 1 and left 1 is blocked, player will stay in the same tile. If up 1 and left 2 is blocked, player will be put up 1 and left 1.
 
 Rules: 
 - You can stand on the floor tiles ('x'), you can stand on other players, you can stand on doors ('&'), and you can stand on buttons ('n', 'u'). 
@@ -37,4 +37,4 @@ Rules:
 - If you are above an empty tile at the end of your move ('-'), you will fall down from gravity until you land on a solid tile. If you fall into a bottomless pit, your character will die and you will lose the game.
 - In each turn, players will take one action in alphabet sequence. You cannot control any player other than {player}, but the other players are trying to help you, and you can talk to them to coordinate a plan.
 
-Attached is the initial game state. Please return one move for the next turn, and something you want to say to the other players before next turn to help you get all players to the goal. Please make your output in a consistent json output, where one key is "move" and the other key is "communication".
+
