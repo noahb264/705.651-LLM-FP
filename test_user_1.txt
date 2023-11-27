@@ -1,0 +1,16 @@
+This is the current state of the game:
+
+{level}
+
+This is what the other agents have said, prior to their previous move:
+
+{thoughts}
+
+Please provide {player}'s next best move, as well as what to say to the other players. Think it step by step: 
+- Is there a direct way to the goal? 
+- What blocks the direct path to the goal? 
+- How to remove the obstacle on the path to the goal? Hint: jump on the button to deactivate the lazer, get the key to unlock the door. 
+- What other players say to me? Based on our move and communication, are we able to finish this game?
+
+The output should in JSON format. 
+
