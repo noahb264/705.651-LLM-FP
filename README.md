@@ -1,6 +1,6 @@
 # 705.651-LLM-FP
 
-# Setup (for Mac)
+## Setup (for Mac)
 
 ```
 python3 -m venv venv
@@ -8,21 +8,21 @@ source ./venv/bin/activate
 pip install -r ./requirements.txt
 ```
 
-# Running
+## Running
 
 ```
 python evaluation.py --level 1 --mover random
 ```
 
-# Demo
+## Demo
 
-In the demo folder, run Demo.ipynb for demo. 
+Run Demo.ipynb in the demo folder. 
 
-You can update the following variable to pick the system prompt and user prompt:
+You can create more system prompt and user prompt, by updating the following variable:
 
 `prompt = ['demo_system_1.txt', 'demo_user_1.txt']`
 
-## TODO
+### TODO
 
 - Review the potential bug in action: jump to the right
 - Adjust the system and user prompts for better collaboration
