@@ -1,6 +1,6 @@
 # 705.651-LLM-FP
 
-## Setup (for Mac)
+## Setup
 
 ```
 python3 -m venv venv
@@ -10,8 +10,20 @@ pip install -r ./requirements.txt
 
 ## Running
 
+
+#### Random
 ```
 python evaluation.py --level 1 --mover random
+```
+
+#### Text-based LLM Agent
+```
+python evaluation.py --level 1 --mover text
+```
+
+#### Vision-based LLM Agent
+```
+python evaluation.py --level 1 --mover vision
 ```
 
 ## Demo
