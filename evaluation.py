@@ -13,7 +13,12 @@ def error(message):
     exit(1)
 
 def is_game_over(current_lvl):
-    return "A" not in current_lvl or "B" not in current_lvl
+    return "A" not in current_lvl or "B" not in current_lvl or "G" not in current_lvl
+
+def switch_player(player):
+    if player == "A": return "B"
+    if player == "B": return "A"
+    error("invalid player")
 
 def evalution(level_num, mover_title):
     level_str = f"level_{level_num}"
@@ -24,16 +29,21 @@ def evalution(level_num, mover_title):
     mover: Mover = MOVERS.get(mover_title)()
     
     saver = Saver()
+    player = "A"
+    moves = []
+    comms = []
     while not is_game_over(level_world) and saver.i < MAX_ITERATIONS:
         saver.update(level_world)
 
-        move = mover.get_next_move(level_world)
+        move, communication = mover.get_next_move(level_world, player, moves, comms)
+        moves.append(list(move.items())[0])
+        comms.append(list(communication.items())[0])
         level_world = apply_game_updates(level_world, move)
-        time.sleep(random.random())
+        player = switch_player(player)
 
     saver.update(level_world)
     saver.finalize()
-    
+
     success = "G" not in level_world
     print("Success?", success)
 

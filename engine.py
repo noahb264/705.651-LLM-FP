@@ -6,7 +6,7 @@ def move_player(level_data, x, y, dx, dy):
     new_x, new_y = x + dx, y + dy
     target_cell = level_data[new_x, new_y]
 
-    if target_cell not in ['x', '&', 'v', '^']:  # fail if not solid
+    if target_cell not in ['x', '&', 'v', '^', 'A', 'B', 'C', 'D', 'n', 'u']:  # fail if not solid
 
         if target_cell == 'k':  # key logic
             level_data[level_data == '&'] = '-'  # Open all doors
@@ -14,6 +14,7 @@ def move_player(level_data, x, y, dx, dy):
             level_data[x, y] = '-'
 
         elif target_cell == 'G':  # goal logic
+            level_data[new_x, new_y] = player_symbol
             level_data[x, y] = '-'
 
         else:
@@ -22,22 +23,23 @@ def move_player(level_data, x, y, dx, dy):
 def jump_over(level_data, x, y, direction):
     offset = -1 if direction == 'left' else 1
 
-    # one up and one to the direction
+    # Check if the jump is within bounds
+    if not (0 <= x - 1 < 12) or not (0 <= y + 2*offset < 12):
+        return (0, 0)
+
+    # Check for laser at one up and one to the direction
+    if level_data[x-1, y+offset] == 'z':
+        return (None, None)
+
+    # Check if one up and one to the direction is blocked by a non-laser
     if level_data[x-1, y+offset] in ['x', 'v', '^', '&', 'A', 'B', 'C', 'D']:
         return (0, 0)
 
-    # two to the direction
-    if level_data[x, y+2*offset] in ['x', 'v', '^', '&', 'A', 'B', 'C', 'D']:
-        return (-1, 2*offset)
-
-    # two to the direction and one up
-    if level_data[x-1, y+2*offset] in ['x', 'v', '^', '&', 'A', 'B', 'C', 'D']:
+    # Check if two to the direction and one up is blocked
+    if level_data[x-1, y+2*offset] in ['x', 'v', '^', '&', 'A', 'B', 'C', 'D', 'z']:
         return (-1, offset)
 
-    # kill player if any lasers
-    if 'z' in [level_data[x-1, y+offset], level_data[x, y+2*offset], level_data[x-1, y+2*offset]]:
-        return (None, None)
-
+    # If both checks pass, move two to the direction
     return (0, 2*offset)
 
 def handle_player_action(level_data, player, action):
@@ -113,14 +115,6 @@ def apply_button_interactions(updated_data):
 
     return updated_data
 
-# is this function needed? I think I do this in move player
-def apply_interactions(updated_data):
-    if any(player in ['A', 'B', 'C', 'D'] for player in updated_data[updated_data == 'k']):
-        updated_data[updated_data == '&'] = '-'
-        updated_data[updated_data == 'k'] = '-'
-
-    return updated_data
-
 def apply_actions(level_data, actions):
     updated_data = level_data.copy()
     for player, action in actions.items():
@@ -131,7 +125,6 @@ def apply_game_updates(level_data, actions):
     """Integrate all actions and interactions."""
     updated_data = apply_actions(level_data, actions)
     updated_data = apply_gravity(updated_data)
-    updated_data = apply_interactions(updated_data)
     updated_data = apply_button_interactions(updated_data)
 
     return updated_data

@@ -3,42 +3,49 @@ import matplotlib.colors as mcolors
 
 import numpy as np
 
-def display_level_with_labels(level_data):
-    # Color mapping for each tile
-    color_map = {
-        '-': 'white',
-        'x': 'gray',
-        'A': 'blue',
-        'B': 'green',
-        'C': 'red',
-        'D': 'purple',
-        'k': 'yellow',
-        'n': 'orange',
-        'u': 'cyan',
-        '&': 'brown',
-        'z': 'pink',
-        'v': 'lightblue',
-        '^': 'lightgreen',
-        'G': 'gold'
-    }
+def print_to_string(level):
+    level_string = ""
+    for row in level:
+      level_string = level_string + ','.join(row) + '\n'
+    return level_string
 
-    # Label mapping for each tile
-    label_map = {
-        '-': '',
-        'x': '',
-        'A': 'P1',
-        'B': 'P2',
-        'C': 'P3',
-        'D': 'P4',
-        'k': 'key',
-        'n': 'button',
-        'u': 'button',
-        '&': 'door',
-        'z': 'laser',
-        'v': 'laser \nemitter',
-        '^': 'laser \nemitter',
-        'G': 'goal'
-    }
+# Color mapping for each tile
+color_map = {
+    '-': 'white',
+    'x': 'gray',
+    'A': 'blue',
+    'B': 'green',
+    'C': 'red',
+    'D': 'purple',
+    'k': 'yellow',
+    'n': 'orange',
+    'u': 'cyan',
+    '&': 'brown',
+    'z': 'pink',
+    'v': 'lightblue',
+    '^': 'lightgreen',
+    'G': 'gold'
+}
+
+# Label mapping for each tile
+label_map = {
+    '-': '',
+    'x': '',
+    'A': 'P1',
+    'B': 'P2',
+    'C': 'P3',
+    'D': 'P4',
+    'k': 'key',
+    'n': 'button',
+    'u': 'button',
+    '&': 'door',
+    'z': 'laser',
+    'v': 'laser \nemitter',
+    '^': 'laser \nemitter',
+    'G': 'goal'
+}
+
+def display_level_with_labels(level_data):
 
     # Convert tile symbols to RGB values using color map
     rows, cols = level_data.shape

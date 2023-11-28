@@ -1,5 +1,4 @@
-This is the current state of the game:
-{level}
+You have received the current board state as an image.
 
 Here are the moves up to this point:
 {moves}
@@ -10,7 +9,7 @@ This is what the other agents have said, prior to their previous move.:
 Think it step by step: 
 - Is there a direct way to the goal?
 - What obstacle block the direct path to the goal? 
-- How to remove the obstacle on the path to the goal? Hint: jump on the button to deactivate the laser, move into the key('k') tile to unlock the door('&'). 
+- How to remove the obstacle on the path to the goal? Hint: jump on the button to deactivate the laser, move into the key tile to unlock the door. 
 - What other players say to me? Based on our move and communication, are we able to finish this game?
 - Do I need to jump on other player to reach something?
 
