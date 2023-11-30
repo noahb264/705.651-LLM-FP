@@ -13,17 +13,17 @@ pip install -r ./requirements.txt
 
 #### Random
 ```
-python evaluation.py --level 1 --mover random
+python evaluation.py --level level_1 --mover random
 ```
 
 #### Text-based LLM Agent
 ```
-python evaluation.py --level 1 --mover text
+python evaluation.py --level level_1 --mover text
 ```
 
 #### Vision-based LLM Agent
 ```
-python evaluation.py --level 1 --mover vision
+python evaluation.py --level level_1 --mover vision
 ```
 
 ## Demo
