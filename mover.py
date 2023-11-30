@@ -96,7 +96,7 @@ class VisionMover(Mover):
         response = self.client.chat.completions.create(
             model="gpt-4-vision-preview",
             messages=[
-                {"role": "system", "content": system_prompt.format(player=current_plr)},
+                {"role": "system", "content": system_prompt.format(player=label_map[current_plr])},
                 {
                     "role": "user",
                     "content": [
@@ -113,7 +113,7 @@ class VisionMover(Mover):
                     ],
                 }
             ],
-            max_tokens=300,
+            max_tokens=500,
         )
 
         moves = response.choices[0].message.content

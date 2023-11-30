@@ -36,9 +36,14 @@ class Saver():
         print(f"Current iteration: {self.i} | Time elapsed: {elapsed_time}", end="\r")
         self.i += 1
 
-    def finalize(self):
+    def finalize(self, final_state):
         print()
         with imageio.get_writer(f"{self.base_path}/final.gif", mode='I', fps=1) as writer:
             for filename in sorted(glob.glob(f"{self.base_path}/*.jpg")):
                 image = imageio.imread(filename)
                 writer.append_data(image)
+
+        with open(f"{self.base_path}/report.txt", "w") as f:
+            f.write(f"Total iterations: {self.i}\n")
+            f.write(f"Total time: {round(time.time() - self.start_time, 2)}\n")
+            f.write(f"Success? {'G' not in final_state}")
