@@ -4,6 +4,7 @@ from render import display_level_with_labels
 import imageio
 import glob
 import time
+import json
 import matplotlib.pyplot as plt
 
 class Saver():
@@ -36,12 +37,15 @@ class Saver():
         print(f"Current iteration: {self.i} | Time elapsed: {elapsed_time}", end="\r")
         self.i += 1
 
-    def finalize(self, final_state):
+    def finalize(self, final_state, moves, comms):
         print()
         with imageio.get_writer(f"{self.base_path}/final.gif", mode='I', fps=1) as writer:
             for filename in sorted(glob.glob(f"{self.base_path}/*.jpg")):
                 image = imageio.imread(filename)
                 writer.append_data(image)
+
+        json.dump(moves, open(f"{self.base_path}/moves.json", "w"))
+        json.dump(comms, open(f"{self.base_path}/comms.json", "w"))
 
         with open(f"{self.base_path}/report.txt", "w") as f:
             f.write(f"Total iterations: {self.i}\n")

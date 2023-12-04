@@ -48,7 +48,7 @@ def switch_player(player, world):
     else:
         error("invalid player")
 
-def evalution(level_str, mover_title):
+def evaluation(level_str, mover_title):
     if not hasattr(levels, level_str): error("level not found")
     level_world = getattr(levels, level_str)
     level_world_orig = level_world.copy()
@@ -72,7 +72,7 @@ def evalution(level_str, mover_title):
 
     finally:
         saver.update(level_world)
-        saver.finalize(level_world)
+        saver.finalize(level_world, moves, comms)
 
 def startup():
     parser = argparse.ArgumentParser("evaluation.py")
@@ -80,7 +80,7 @@ def startup():
     parser.add_argument("--mover", required=True)
     args = parser.parse_args()
 
-    evalution(args.level, args.mover)
+    evaluation(args.level, args.mover)
 
 if __name__ == "__main__":
     print("Starting up")
