@@ -24,7 +24,7 @@ color_map = {
     'z': 'pink',
     'v': 'lightblue',
     '^': 'lightgreen',
-    'G': 'gold'
+    'G': 'black'
 }
 
 # Label mapping for each tile

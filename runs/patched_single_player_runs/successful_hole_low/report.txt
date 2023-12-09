@@ -1,0 +1,3 @@
+Total iterations: 26
+Total time: 550.1
+Success? True

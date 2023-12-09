@@ -1,5 +1,23 @@
 You are an expert gamer. You will be playing a game today. In this game, you are player "{player}", represented by the tile "{player}". The object of the game is for all players to reach the goal tile. Your available actions are as follows:
 
+This is a turn-based platformer, meaning there is gravity, solid objects, collectables, bottomless pits, obstacles, etc.
+
+Solid Objects:
+
+Floor and Wall tiles (gray tiles) - these are not subject to gravity. You can stand on these, and you cannot walk through them. If you are directly adjacent to a wall which is the same height you are currently, you can jump over or on top of it.
+Other players (blue, green, red, purple tiles for P1, P2, P3, P4 respectively) - these are subject to gravity. You can stand on these, and you cannot walk through them, so to get past another player, you will have to jump over them or jump on top of them first.
+Doors (brown tiles) - these behave like floor tiles, but they will vanish if the key (yellow tiles) is collected.
+Buttons (orange and cyan tiles) - these are like floor tiles, but they will change states depending on if something is on top of them. Standing on them (switching it to cyan) will deactivate all lasers (pink tiles), and getting off of a button (switching it to orange) will turn them all back on. You will need to stand on a button for multiple turns, because the lasers will just come back if you get off the button.
+Laser Emitters (lightblue or lightgreen tiles) - these are like floor tiles, but they emit lasers when no button is pressed. lightblue emitters will emit the lasers upwards, and lightgreen emitters will emit the lasers downwards. Touching a player will kill the player, and you will lose the level, so avoid lasers at all costs.
+
+Non-Solid Objects:
+
+Keys (yellow tiles) - collecting these will immediately open all doors (brown tiles), the key will be deleted, and the player will occupy the same square as the key afterwards.
+
+You cannot pass through other players, buttons, gray tiles, or doors. You cannot exit the play field. If you are above an empty tile at the end of your move (white tiles), you will fall down from gravity until you land on a solid tile. If you fall into a bottomless pit, your character will die and you will lose the game.
+
+Your available actions each turn are as follows:
+
 - move left (1 tile)
 - move right (1 tile)
 - jump on right (puts you up 1 and right 1, before gravity is applied)
@@ -24,10 +42,126 @@ Here are all the possible values for a square on our board.
     'pink': 'laser',
     'lightblue': 'laser emitter',
     'lightgreen': 'laser emitter',
-    'gold': 'goal'
+    'black': 'goal'
 
-You can stand on the floor tiles, you can stand on other players, you can stand on doors, and you can stand on buttons. You cannot pass through gray tiles or doors. You cannot exit the play field. Standing on a button will deactivate all lasers, touching a laser will kill the player. Getting off a button will turn lasers back on. Collecting a key will immediately open all doors on the map. If you are above an empty tile at the end of your move, you will fall down from gravity until you land on a solid tile. If you fall into a bottomless pit, your character will die and you will lose the game.
+We will also provide a text based representation of the board, which looks like this:
+
+Here are all the possible values for a square on our board.
+
+        '-': 'empty',
+        'x': 'floor/wall',
+        'A': 'P1',
+        'B': 'P2',
+        'C': 'P3',
+        'D': 'P4',
+        'k': 'key',
+        'n': 'button',
+        'u': 'button',
+        '&': 'door',
+        'z': 'laser',
+        'v': 'laser emitter',
+        '^': 'laser emitter',
+        'G': 'goal'
 
 Both players move at the same time. You cannot control any player other than {player}, but the other players are trying to help you, and you can talk to them to coordinate a plan.
+
+
+Here are some examples
+
+# Example 1
+
+-,-,-,z
+A,n,-,z
+x,x,x,^
+
+move: jump on right
+
+-,A,-,-
+-,u,-,-
+x,x,x,^
+
+# Example 2
+
+-,-,-,-
+k,A,-,&
+x,x,x,x
+
+move: move left
+
+-,-,-,-
+A,-,-,-
+x,x,x,x
+
+# Example 3
+
+-,-,-,-
+k,A,-,&
+x,x,x,x
+
+move: move right
+
+-,-,-,-
+l,-,A,&
+x,x,x,x
+
+# Example 4
+
+-,-,-,-
+A,x,-,-
+x,x,x,x
+
+move: jump over right
+
+-,-,-,-
+-,x,A,-
+x,x,x,x
+
+# Example 5
+
+-,-,-,-
+A,^,-,-
+x,x,x,x
+
+move: move right
+
+-,-,-,-
+A,^,-,-
+x,x,x,x
+
+# Example 6
+
+-,-,-,-
+A,^,-,-
+x,x,x,x
+
+move: jump over right
+
+-,-,-,-
+-,^,A,-
+x,x,x,x
+
+# Example 7
+
+B,-,A,-
+^,-,u,-
+x,x,x,x
+
+move: move right
+
+z,-,-,-
+^,-,n,A
+x,x,x,x
+
+# Example 8
+
+-,-,-,-
+A,x,-,-
+x,x,x,x
+
+move: move right
+
+-,-,-,-
+A,x,-,-
+x,x,x,x
 
 Attached is the initial game state. Please return one move for the next turn, and something you want to say to the other players before next turn to help you get all players to the goal. Please make your output in a consistent json output, where one key is "move" and the other key is "communication".

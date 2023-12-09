@@ -35,6 +35,7 @@ class Saver():
 
         elapsed_time = round(time.time() - self.start_time, 2)
         print(f"Current iteration: {self.i} | Time elapsed: {elapsed_time}", end="\r")
+        print(current_lvl)
         self.i += 1
 
     def finalize(self, final_state, moves, comms):

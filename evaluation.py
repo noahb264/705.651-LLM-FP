@@ -6,7 +6,7 @@ import time
 import random
 from saver import Saver
 
-MAX_ITERATIONS = 100
+MAX_ITERATIONS = 25
 
 def error(message):
     print("Error:", message)
@@ -63,6 +63,9 @@ def evaluation(level_str, mover_title):
     try:
         while not is_game_over(level_world, level_world_orig) and saver.i < MAX_ITERATIONS:
             saver.update(level_world)
+
+            if player == "A":
+                comms = []
 
             move, communication = mover.get_next_move(level_world, player, moves, comms)
             moves.append(list(move.items())[0])

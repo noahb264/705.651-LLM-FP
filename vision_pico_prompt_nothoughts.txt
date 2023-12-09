@@ -1,0 +1,24 @@
+You have received the current board state as an image.
+
+In addition, here is the same current board state as text:
+
+{level}
+
+Here are what each of the other players said last turn:
+
+{comms}
+
+Let's think step by step: 
+- Is there a direct way to the goal?
+- Am I being blocked by an adjacent wall ('x') or object? Could I jump over that object?
+- If we need to collect something first, is that to the left or the right of my current position? (Player {player})
+- If a button needs to be pressed, am I currently on the button? Do I need to jump onto a button first? Is it okay to jump off the button yet?
+- What obstacle blocks the direct path to the goal? 
+- How can you remove or maneuver around the obstacle on the path to the goal?
+- What have other players said to me? Based on our move and communication, are we able to finish this game?
+- Do I need to jump on other player to reach something?
+
+Based on what other agents said this turn and the current game state, please provide {player}'s next move to support other players to finish their plan. Please make your output in a consistent json output, where: 
+- the first key is "assessment". This is your determination of where the important objects in the level are relative to your current location. For each object (e.g. each key, each door, each button, etc) create a variablename which contains the name of the object (e.g. "button1"), the letter value and color, and where it is relative to you (e.g. "far left", "close right"). Do NOT put anything in this field which is not in the current board state provided above. Do NOT include any keys, buttons, etc if you do not see them in the current board. Remember that walls can count as obstacles also, if they block your path to the goal. You MUST include the goal in this field, and a key "pos_relative_to_{player}" field when assessing the goal.
+- the second key is "communication", confirm if you support other users' plan, or explain why you think it will not work and propose your plan. Explain your next move and the purpose so other players can understand. Make sure your decisions make sense with the assessment values.
+- the last key is "move", and possible value are: "move left", "move right", "jump on right", "jump on left", "jump over right", "jump over left", "do nothing". This should be the best move to accomplish the goal in the communication key. Do not take actions which will not change the board state unless you pick "do nothing" on purpose. Do NOT move into walls while adjacent to them. You may jump on or jump over walls if they are the same height as your current position.

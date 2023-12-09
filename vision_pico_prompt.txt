@@ -1,5 +1,9 @@
 You have received the current board state as an image.
 
+In addition, here is the same current board state as text:
+
+{level}
+
 Here are the moves up to this point:
 {moves}
 
@@ -8,6 +12,8 @@ This is what the other agents have said, prior to their previous move.:
 
 Think it step by step: 
 - Is there a direct way to the goal?
+- If we need to collect something first, is that to the left or the right of my current position? (Player {player})
+- If a button needs to be pressed, am I currently on the button? Do I need to jump onto a button first? Is it okay to jump off the button yet?
 - What obstacle block the direct path to the goal? 
 - How to remove the obstacle on the path to the goal? Hint: jump on the button to deactivate the laser, move into the key tile to unlock the door. 
 - What other players say to me? Based on our move and communication, are we able to finish this game?
@@ -19,4 +25,3 @@ Based on what other agents said in this turn and the current game situation, ple
 Please make your output in a consistent json output, where: 
 - one key is "move", and possible value are: "move left", "move right", "jump on right", "jump on left", "jump over right", "jump over left". 
 - another key is "communication", confirm if you support other users' plan, or explain why you think it will not work and propose your plan. Explain your next move and the purpose so other players can understand. 
-

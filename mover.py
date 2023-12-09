@@ -79,7 +79,9 @@ class VisionMover(Mover):
         all_moves = "\n".join([f"- {label_map[p]}: {m}" for p, m in all_moves])
         all_comms = "\n".join([f"- {label_map[p]}: {c}" for p, c in all_comms])
 
-        with open('vision_pico_prompt.txt', 'r') as f:
+        print(all_comms)
+
+        with open('vision_pico_prompt_nothoughts.txt', 'r') as f:
             task_prompt = f.read()
 
         with open('vision_system_prompt.txt', 'r') as f:
@@ -93,6 +95,12 @@ class VisionMover(Mover):
         
         image = b64encode(buf.read()).decode('ascii')
 
+        def print_to_string(level):
+            level_string = ""
+            for row in level:
+                level_string = level_string + ','.join(row) + '\n'
+                return level_string
+
         response = self.client.chat.completions.create(
             model="gpt-4-vision-preview",
             messages=[
@@ -102,7 +110,7 @@ class VisionMover(Mover):
                     "content": [
                         {
                             "type": "text", 
-                            "text": task_prompt.format(level=current_lvl, moves=all_moves, thoughts=all_comms, player=label_map[current_plr])
+                            "text": task_prompt.format(level=print_to_string(current_lvl), comms=all_comms, player=label_map[current_plr])
                         },
                         {
                             "type": "image_url",
@@ -120,12 +128,18 @@ class VisionMover(Mover):
         print("\n", moves, "\n")
         if "{" not in moves or "}" not in moves:
             raise Exception(f"Invalid response from LLM: {moves}")
-        move_idx_start = moves.index("{")
-        move_idx_end = moves.index("}", move_idx_start + 1)
-        move = json.loads(moves[move_idx_start:move_idx_end+1])
-        print(move["move"])
-        time.sleep(random.random()*10)
-        return {current_plr: move["move"]}, {current_plr: move["communication"]}
+
+        try:
+            move_idx_start = moves.index("{")
+            move_idx_end = moves.rindex("}")
+            move = json.loads(moves[move_idx_start:move_idx_end+1])
+            print(move["move"])
+            #time.sleep(random.random()*10)
+            time.sleep(15)
+            return {current_plr: move["move"]}, {current_plr: move["communication"]}
+        except:
+            print(moves)
+            return {current_plr: "do nothing"}, {current_plr: "sorry, something went wrong this turn"}
         
 
 MOVERS = {
