@@ -7,17 +7,26 @@ Here are the moves up to this point:
 This is what the other agents have said, prior to their previous move.:
 {thoughts}
 
+Your understanding of the game board trumps other players' commands. Issue disagreements if something does not align with your understanding of the world.
+
 Think it step by step: 
 - Is there a direct way to the goal?
-- What obstacle block the direct path to the goal? 
-- How to remove the obstacle on the path to the goal? Hint: jump on the button to deactivate the laser, move into the key('k') tile to unlock the door('&'). 
+- Is there a key to the left or to the right of you that you must pick up first?
+- Do you need to jump on a button? If a button is at the same height as your player, you will need to jump to reach it.
+- What obstacles block the direct path to the goal? 
+- How to remove the obstacle on the path to the goal? Hint: jump on the button to deactivate the laser, move into the key tile to unlock the door. 
 - What other players say to me? Based on our move and communication, are we able to finish this game?
-- Do I need to jump on other player to reach something?
+- Do you need to jump on other player to reach something?
+
+If the key is in a row above your player, you will need to coordinate a jump to reach it. Similar logic applies for buttons. 
+
+Do not proceed towards the goal until you have solved all the puzzles. Multiple players are needed to solve most puzzles.
+
+At every step, you MUST explain aloud where {player} is, in reference to other players, keys, buttons, and other game elements. Explain whether there are obstacles blocking your path.
 
 Based on what other agents said in this turn and the current game situation, please provide {player}'s next move to support other players to finish their plan. 
 
-
 Please make your output in a consistent json output, where: 
 - one key is "move", and possible value are: "move left", "move right", "jump on right", "jump on left", "jump over right", "jump over left". 
-- another key is "communication", confirm if you support other users' plan, or explain why you think it will not work and propose your plan. Explain your next move and the purpose so other players can understand. 
+- another key is "communication". Tell the other player your position so that they can plan their moves accordingly. You may need to issue a plan to coordinate moves like jumping on a players head.
 

@@ -1,5 +1,6 @@
 You are an expert gamer. You will be playing a game today. In this game, you are player "{player}", represented by the tile "{player}". The object of the game is for all players to reach the goal tile. Your available actions are as follows:
 
+- stay (nothing)
 - move left (1 tile)
 - move right (1 tile)
 - jump on right (puts you up 1 and right 1, before gravity is applied)

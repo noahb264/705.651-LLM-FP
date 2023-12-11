@@ -124,7 +124,7 @@ class VisionMover(Mover):
         move_idx_end = moves.index("}", move_idx_start + 1)
         move = json.loads(moves[move_idx_start:move_idx_end+1])
         print(move["move"])
-        time.sleep(random.random()*10)
+        time.sleep(random.random()*20)
         return {current_plr: move["move"]}, {current_plr: move["communication"]}
         
 
