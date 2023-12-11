@@ -1,0 +1,1 @@
+[["A", "move left"], ["B", "move right"], ["A", "move left"], ["B", "jump on left"], ["A", "move right"], ["B", "jump on right"], ["A", "move left"], ["B", "move right"], ["A", "do nothing"], ["B", "do nothing"], ["A", "jump over left"]]
