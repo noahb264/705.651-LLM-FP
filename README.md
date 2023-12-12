@@ -28,7 +28,7 @@ python evaluation.py --level level_1 --mover vision
 
 ## Demo
 
-Run Demo.ipynb in the demo folder. 
+Our first integrated pipeline based on text model. Setup for exploration and individual game level experiment. 
 
 You can create more system prompt and user prompt, by updating the following variable:
 
@@ -36,6 +36,6 @@ You can create more system prompt and user prompt, by updating the following var
 
 ### TODO
 
-- Review the potential bug in action: jump to the right
-- Adjust the system and user prompts for better collaboration
+- Review the potential bug in action: jump to the right => Reference tfidf_string_similarity function in pico_park.ipynb
+- Optimize the system and user prompts for better collaboration
 - Simplify the LLM JSON output
